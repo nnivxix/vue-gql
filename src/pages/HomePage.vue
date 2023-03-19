@@ -16,15 +16,16 @@ const USERS = gql`
   }
 `;
 const { result, loading, error } = useQuery(USERS);
-console.log({ result, loading });
 </script>
 
 <template>
   <h1>List of users</h1>
   <h1 v-if="loading">loading...</h1>
-  <div v-else v-for="user in result.users.data" :key="user.id">
-    <RouterLink class="user" :to="'/user/' + user.id">#{{ user.id }} {{ user.name }}</RouterLink>
-  </div>
+  <ul v-else v-for="user in result.users.data" :key="user.id">
+    <li>
+      <RouterLink class="user" :to="'/user/' + user.id">#{{ user.id }} {{ user.name }}</RouterLink>
+    </li>
+  </ul>
 </template>
 
 <style scoped>
